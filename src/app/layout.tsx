@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Clínica de Acupuntura",
+  title: "Clínica de Acupuntura Lianyi",
   description: "Gestión de pacientes y herramientas clínicas",
 };
 
