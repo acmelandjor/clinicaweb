@@ -1,6 +1,6 @@
 import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
 import { getFirestore, Firestore } from "firebase/firestore";
-// import { getAuth, Auth } from "firebase/auth";
+import { getAuth, Auth } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -14,21 +14,20 @@ const firebaseConfig = {
 // Variables para almacenar las instancias
 let app: FirebaseApp;
 let db: Firestore;
-// let auth: Auth;
+let auth: Auth;
 
 // Inicializar Firebase solo en el cliente (navegador)
 if (typeof window !== 'undefined') {
     // Solo se ejecuta en el navegador
     app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
     db = getFirestore(app);
-    // auth = getAuth(app); // Descomentar cuando habilitemos autenticación
+    auth = getAuth(app);
 } else {
     // En el servidor, crear referencias null
     // Esto previene errores de hidratación
     app = null as any;
     db = null as any;
-    // auth = null as any;
+    auth = null as any;
 }
 
-export { app, db };
-// export { app, db, auth }; // Descomentar cuando habilitemos autenticación
+export { app, db, auth };

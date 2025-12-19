@@ -3,8 +3,9 @@
 import { useState, useEffect, ChangeEvent } from 'react';
 import {
   UserPlus, Calendar, FileText, Timer, User, Search, Plus,
-  Clock, Play, Pause, RotateCcw
+  Clock, Play, Pause, RotateCcw, LogOut
 } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
 import { db } from '@/lib/firebase';
 import {
   collection,
@@ -113,6 +114,7 @@ interface DetalleSesion {
 }
 
 export default function ClinicaApp() {
+  const { signOut, user } = useAuth();
   const [activeSection, setActiveSection] = useState<string>('registro');
   const [pacientes, setPacientes] = useState<PacienteFirestore[]>([]);
   const [sesiones, setSesiones] = useState<SesionFirestore[]>([]);
@@ -388,7 +390,7 @@ export default function ClinicaApp() {
           <Calendar className="text-green-600" />
           Nueva Sesión Clínica
         </h2>
-        
+
         <div className="space-y-6">
           {/* Datos Generales */}
           <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
@@ -430,8 +432,8 @@ export default function ClinicaApp() {
               </div>
             </div>
             <div className="mt-4">
-               <label className="block text-sm font-medium text-gray-700 mb-1">Motivo de Consulta</label>
-               <input
+              <label className="block text-sm font-medium text-gray-700 mb-1">Motivo de Consulta</label>
+              <input
                 type="text"
                 name="motivo"
                 value={form.motivo}
@@ -467,7 +469,7 @@ export default function ClinicaApp() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-             <div>
+            <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Puntos Tratados</label>
               <input
                 type="text"
@@ -479,8 +481,8 @@ export default function ClinicaApp() {
               />
             </div>
             <div>
-               <label className="block text-sm font-medium text-gray-700 mb-1">Tratamiento / Técnica</label>
-               <input
+              <label className="block text-sm font-medium text-gray-700 mb-1">Tratamiento / Técnica</label>
+              <input
                 type="text"
                 name="tratamiento"
                 value={form.tratamiento}
@@ -493,51 +495,51 @@ export default function ClinicaApp() {
 
           {/* Observación Física (Lengua y Pulso) */}
           <div className="bg-amber-50 p-4 rounded-lg border border-amber-100">
-             <h3 className="text-sm font-semibold text-amber-800 mb-3 uppercase tracking-wide">Observación Física</h3>
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Lengua (Cuerpo)</label>
-                  <input
-                    type="text"
-                    name="lengua_cuerpo"
-                    value={form.lengua_cuerpo}
-                    onChange={handleChange}
-                    placeholder="Pálida, Roja, Hinchada..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Lengua (Saburra)</label>
-                  <input
-                    type="text"
-                    name="lengua_saburra"
-                    value={form.lengua_saburra}
-                    onChange={handleChange}
-                    placeholder="Blanca, Amarilla, Espesa..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Pulso Izquierdo</label>
-                  <input
-                    type="text"
-                    name="pulso_izquierdo"
-                    value={form.pulso_izquierdo}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Pulso Derecho</label>
-                  <input
-                    type="text"
-                    name="pulso_derecho"
-                    value={form.pulso_derecho}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                  />
-                </div>
-             </div>
+            <h3 className="text-sm font-semibold text-amber-800 mb-3 uppercase tracking-wide">Observación Física</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Lengua (Cuerpo)</label>
+                <input
+                  type="text"
+                  name="lengua_cuerpo"
+                  value={form.lengua_cuerpo}
+                  onChange={handleChange}
+                  placeholder="Pálida, Roja, Hinchada..."
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Lengua (Saburra)</label>
+                <input
+                  type="text"
+                  name="lengua_saburra"
+                  value={form.lengua_saburra}
+                  onChange={handleChange}
+                  placeholder="Blanca, Amarilla, Espesa..."
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Pulso Izquierdo</label>
+                <input
+                  type="text"
+                  name="pulso_izquierdo"
+                  value={form.pulso_izquierdo}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Pulso Derecho</label>
+                <input
+                  type="text"
+                  name="pulso_derecho"
+                  value={form.pulso_derecho}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                />
+              </div>
+            </div>
           </div>
 
           <div>
@@ -869,9 +871,21 @@ export default function ClinicaApp() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
       <header className="bg-white shadow-md">
-        <div className="container mx-auto px-4 py-4">
-          <h1 className="text-3xl font-bold text-gray-800">Sistema Clínica Médica</h1>
-          <p className="text-gray-600">Gestión integral de pacientes</p>
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-800">Sistema Clínica Médica</h1>
+            <p className="text-gray-600">Gestión integral de pacientes</p>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-gray-600 hidden md:block">{user?.email}</span>
+            <button
+              onClick={signOut}
+              className="flex items-center gap-2 px-4 py-2 border border-red-200 text-red-600 rounded-lg hover:bg-red-50 transition-colors"
+            >
+              <LogOut size={18} />
+              <span className="hidden sm:inline">Cerrar Sesión</span>
+            </button>
+          </div>
         </div>
       </header>
 
