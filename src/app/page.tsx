@@ -444,55 +444,6 @@ export default function ClinicaApp() {
             </div>
           </div>
 
-          {/* Diagnóstico y Tratamiento */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Síntomas</label>
-              <textarea
-                name="sintomas"
-                value={form.sintomas}
-                onChange={handleChange}
-                rows={3}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Diagnóstico</label>
-              <textarea
-                name="diagnostico"
-                value={form.diagnostico}
-                onChange={handleChange}
-                rows={3}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Puntos Tratados</label>
-              <input
-                type="text"
-                name="puntos"
-                value={form.puntos}
-                onChange={handleChange}
-                placeholder="IG4, H3, E36..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Tratamiento / Técnica</label>
-              <input
-                type="text"
-                name="tratamiento"
-                value={form.tratamiento}
-                onChange={handleChange}
-                placeholder="Acupuntura, Moxa, Ventosas..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              />
-            </div>
-          </div>
-
           {/* Observación Física (Lengua y Pulso) */}
           <div className="bg-amber-50 p-4 rounded-lg border border-amber-100">
             <h3 className="text-sm font-semibold text-amber-800 mb-3 uppercase tracking-wide">Observación Física</h3>
@@ -539,6 +490,56 @@ export default function ClinicaApp() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                 />
               </div>
+            </div>
+          </div>
+
+          {/* Síntomas y Diagnóstico */}
+          <div className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Síntomas y Signos</label>
+              <textarea
+                name="sintomas"
+                value={form.sintomas}
+                onChange={handleChange}
+                rows={3}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Diagnóstico</label>
+                <textarea
+                  name="diagnostico"
+                  value={form.diagnostico}
+                  onChange={handleChange}
+                  rows={3}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Tratamiento / Técnica</label>
+                <textarea
+                  name="tratamiento"
+                  value={form.tratamiento}
+                  onChange={handleChange}
+                  rows={3}
+                  placeholder="Acupuntura, Moxa, Ventosas..."
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Puntos Tratados</label>
+              <input
+                type="text"
+                name="puntos"
+                value={form.puntos}
+                onChange={handleChange}
+                placeholder="IG4, H3, E36..."
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              />
             </div>
           </div>
 
