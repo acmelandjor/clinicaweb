@@ -296,33 +296,7 @@ export default function ClinicaApp() {
           </button>
         </div>
 
-        <div className="mt-8 border-t pt-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">
-            Pacientes Registrados ({pacientes.length})
-          </h3>
-          <div className="space-y-3">
-            {pacientes.length === 0 ? (
-              <p className="text-gray-500 text-center py-4">No hay pacientes registrados</p>
-            ) : (
-              pacientes.map(p => (
-                <div key={p.id_firestore} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="font-semibold text-gray-800">{p.nombre}</p>
-                      <p className="text-sm text-gray-600">Edad: {p.edad} años | Profesión: {p.profesion}</p>
-                      <p className="text-sm text-gray-500">Motivo: {p.motivo_consulta}</p>
-                    </div>
-                    <span className="text-xs text-gray-500">
-                      {typeof p.fecha_registro === 'string'
-                        ? p.fecha_registro
-                        : p.fecha_registro?.toDate?.()?.toLocaleDateString() || "Sin fecha"}
-                    </span>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-        </div>
+
       </div>
     );
   };
