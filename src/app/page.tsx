@@ -848,7 +848,7 @@ export default function ClinicaApp() {
       <header className="bg-white shadow-md">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800">Sistema Clínica Médica</h1>
+            <h1 className="text-3xl font-bold text-gray-800">Sistema Clínica Liányī 漣漪</h1>
             <p className="text-gray-600">Gestión integral de pacientes</p>
           </div>
           <div className="flex items-center gap-4">
