@@ -74,6 +74,9 @@ interface FormSesion {
   pulso_izquierdo: string;
   pulso_derecho: string;
   observacion: string;
+  palpacion_canales: string;
+  diagnostico_canales: string;
+  seleccion_canales: string;
 }
 
 // SESIÓN PACIENTE
@@ -111,6 +114,9 @@ interface DetalleSesion {
   puntos: string;
   sintomas: string;
   tratamiento: string;
+  palpacion_canales?: string;
+  diagnostico_canales?: string;
+  seleccion_canales?: string;
 }
 
 export default function ClinicaApp() {
@@ -316,7 +322,10 @@ export default function ClinicaApp() {
       lengua_saburra: '',
       pulso_izquierdo: '',
       pulso_derecho: '',
-      observacion: ''
+      observacion: '',
+      palpacion_canales: '',
+      diagnostico_canales: '',
+      seleccion_canales: ''
     });
 
     const handleSubmit = async () => {
@@ -341,7 +350,10 @@ export default function ClinicaApp() {
             lengua_saburra: '',
             pulso_izquierdo: '',
             pulso_derecho: '',
-            observacion: ''
+            observacion: '',
+            palpacion_canales: '',
+            diagnostico_canales: '',
+            seleccion_canales: ''
           });
           alert('Sesión registrada exitosamente en el historial del paciente');
         } catch (error) {
@@ -514,6 +526,46 @@ export default function ClinicaApp() {
                 placeholder="IG4, H3, E36..."
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
+            </div>
+
+            {/* Diagnóstico y Palpación por Canales */}
+            <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+              <h3 className="text-sm font-semibold text-indigo-800 mb-3 uppercase tracking-wide">Diagnóstico por Canales</h3>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Palpación de Canales</label>
+                  <textarea
+                    name="palpacion_canales"
+                    value={form.palpacion_canales}
+                    onChange={handleChange}
+                    rows={2}
+                    placeholder="Sensibilidad, nódulos, cambios térmicos..."
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Diagnóstico por Canales</label>
+                    <textarea
+                      name="diagnostico_canales"
+                      value={form.diagnostico_canales}
+                      onChange={handleChange}
+                      rows={2}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Selección de Canales</label>
+                    <textarea
+                      name="seleccion_canales"
+                      value={form.seleccion_canales}
+                      onChange={handleChange}
+                      rows={2}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -746,6 +798,15 @@ export default function ClinicaApp() {
                             <p className="mb-1"><span className="font-medium">Puntos:</span> {sesion.puntos}</p>
                             <p><span className="font-medium">Tratamiento:</span> {sesion.tratamiento}</p>
                           </div>
+
+                          {(sesion.palpacion_canales || sesion.diagnostico_canales || sesion.seleccion_canales) && (
+                            <div className="bg-indigo-50 p-2 rounded-lg">
+                              <p className="text-xs font-bold text-indigo-700 uppercase mb-1">Canales</p>
+                              {sesion.palpacion_canales && <p className="mb-1 text-xs"><span className="font-medium">Palpación:</span> {sesion.palpacion_canales}</p>}
+                              {sesion.diagnostico_canales && <p className="mb-1 text-xs"><span className="font-medium">Diagnóstico:</span> {sesion.diagnostico_canales}</p>}
+                              {sesion.seleccion_canales && <p className="text-xs"><span className="font-medium">Selección:</span> {sesion.seleccion_canales}</p>}
+                            </div>
+                          )}
                         </div>
 
                         <div className="space-y-2">
