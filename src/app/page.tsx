@@ -331,7 +331,7 @@ export default function ClinicaApp() {
     const handleSubmit = async () => {
       if (form.pacienteId && form.fecha) {
         try {
-          // Guardar en la subcolección del paciente
+          // Guardar en la subcolección del paciente/a
           await addDoc(collection(db, `pacientes/${form.pacienteId}/sesiones`), {
             ...form,
             fechaCreado: serverTimestamp()
